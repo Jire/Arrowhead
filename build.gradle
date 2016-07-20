@@ -15,6 +15,7 @@
  */
 
 buildscript {
+    ext.arrowhead_version = '1.0'
     ext.kotlin_version = '1.0.3'
     ext.jna_version = '4.3.0-SNAPSHOT' // living on the bleeding edge!
 
@@ -33,7 +34,7 @@ plugins {
 }
 
 group 'org.jire.arrowhead'
-version '1.0'
+version arrowhead_version
 
 allprojects {
     repositories {
@@ -51,7 +52,7 @@ publishing {
             from components.java
             groupId 'org.jire'
             artifactId 'arrowhead'
-            version '1.0'
+            version arrowhead_version
         }
     }
 }
@@ -70,8 +71,8 @@ bintray {
         vcsUrl = 'https://github.com/Jire/Arrowhead.git'
         githubRepo = 'Jire/Arrowhead'
         version {
-            name = '1.0'
-            vcsTag = '1.0'
+            name = arrowhead_version
+            vcsTag = arrowhead_version
             gpg {
                 sign = true
             }
@@ -81,7 +82,6 @@ bintray {
 
 repositories {
     mavenCentral()
-    jcenter()
 
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
