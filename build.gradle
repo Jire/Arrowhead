@@ -71,7 +71,7 @@ bintray {
         publicDownloadNumbers = true
         websiteUrl = "https://github.com/Jire/$project_name"
         issueTrackerUrl = "https://github.com/Jire/$project_name/issues"
-        vcsUrl = "https://github.com/Jire/$project_name.git"
+        vcsUrl = "https://github.com/Jire/${project_name}.git"
         githubRepo = "Jire/$project_name"
         version {
             name = project_version
