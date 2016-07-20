@@ -1,15 +1,19 @@
-## Arrowhead
+[![Build Status](https://travis-ci.org/Jire/Arrowhead.svg?branch=master)](https://travis-ci.org/Jire/Arrowhead)
+[![Dependency Status](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5)
+[![License](https://img.shields.io/github/license/Jire/Arrowhead.svg)](https://github.com/Jire/Arrowhead/blob/master/LICENSE.txt)
+
+# Arrowhead
 _Straightforward native interfacing from Kotlin_
 
 ---
 
-#### Sources
+### Sources
 
 Sources are native references that can be read from and written to through Arrowhead.
 
 `Process` and `Module` are the two sources available.
 
-#### Acquiring a process
+### Acquiring a process
 
 Use the `Arrowhead` object to acquire a `Process?` by name:
 
@@ -23,7 +27,7 @@ You can also acquire by process ID (PID):
 val process123 = Arrowhead.processByID(123)!!
 ```
 
-#### Acquiring a module
+### Acquiring a module
 
 You can use `.modules` off a process for a map of the module name to the `Module`.
 
@@ -31,7 +35,7 @@ You can use `.modules` off a process for a map of the module name to the `Module
 val module = process.modules["module.dll"]!!
 ```
 
-#### Reading from a source
+### Reading from a source
 
 You can use the implicit data type to read from an address:
 
@@ -58,7 +62,7 @@ val someFloat = process.float(0x123)
 val someBoolean = process.boolean(0x123)
 ```
 
-#### Writing to a source
+### Writing to a source
 
 Writing to a source is just as easy as reading.
 
