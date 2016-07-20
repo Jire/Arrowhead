@@ -1,0 +1,33 @@
+group 'org.jire.arrowhead'
+version '1.0'
+
+buildscript {
+    ext.kotlin_version = '1.0.3'
+    ext.jna_version = '4.3.0-SNAPSHOT' // living on the bleeding edge!
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+repositories {
+    mavenCentral()
+
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile group: 'net.java.dev.jna', name: 'jna', version: jna_version
+    compile group: 'net.java.dev.jna', name: 'jna-platform', version: jna_version
+
+    compile group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.12'
+}
