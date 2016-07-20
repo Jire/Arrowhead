@@ -16,6 +16,7 @@
 
 buildscript {
     ext.project_name = 'Arrowhead'
+    ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
     ext.project_version = '1.0'
 
@@ -36,7 +37,7 @@ plugins {
     id "com.jfrog.bintray" version "1.7"
 }
 
-group "org.jire.$project_artifact"
+group project_group
 version project_version
 
 allprojects {
