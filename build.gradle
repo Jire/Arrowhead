@@ -57,23 +57,31 @@ publishing {
 }
 
 bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
     publications = ['MyPublication']
     pkg {
         repo = 'maven'
         name = 'Arrowhead'
         licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+        websiteUrl = 'https://github.com/Jire/Arrowhead'
+        issueTrackerUrl = 'https://github.com/Jire/Arrowhead/issues'
         vcsUrl = 'https://github.com/Jire/Arrowhead.git'
+        githubRepo = 'Jire/Arrowhead'
         version {
             name = '1.0'
             vcsTag = '1.0'
+            gpg {
+                sign = true
+            }
         }
     }
 }
 
 repositories {
     mavenCentral()
+    jcenter()
 
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
