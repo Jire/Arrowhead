@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Jire/Arrowhead.svg?branch=master)](https://travis-ci.org/Jire/Arrowhead)
-[![Dependency Status](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5)
+[![Dependency Status](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5/badge.svg?style=flat)](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5)
 [![License](https://img.shields.io/github/license/Jire/Arrowhead.svg)](https://github.com/Jire/Arrowhead/blob/master/LICENSE.txt)
 
 # Arrowhead
