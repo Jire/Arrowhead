@@ -14,6 +14,13 @@
    limitations under the License.
  */
 
+/*
+   "Windows" is a trademark of Microsoft Corporation.
+
+   The trademark holders are not affiliated with the maker
+   of this product and do not endorse this product.
+ */
+
 package org.jire.arrowhead.windows
 
 import com.sun.jna.Native
