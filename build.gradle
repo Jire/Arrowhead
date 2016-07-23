@@ -17,6 +17,7 @@
 buildscript {
     ext.github_user = 'Jire'
     ext.project_name = 'Arrowhead'
+    ext.project_description = 'Straightforward native interfacing from Kotlin'
     ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
     ext.project_version = '1.0.1'
@@ -74,12 +75,12 @@ publishing {
                 asNode().children().last() + {
                     resolveStrategy = Closure.DELEGATE_FIRST
                     name project_name
-                    description 'Straightforward native interfacing from Kotlin'
-                    url projectUrl
+                    description project_description
+                    url "https://github.com/$github_user/$project_name"
                     scm {
-                        url scmUrl
-                        connection connectionUrl
-                        developerConnection developerConnectionUrl
+                        url "https://github.com/$github_user/$project_name"
+                        connection "scm:git:git://github.com/$github_user/${project_name}.git"
+                        developerConnection "scm:git:ssh:git@github.com:$github_user/${project_name}.git"
                     }
                     licenses {
                         license {
