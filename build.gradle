@@ -24,6 +24,9 @@ buildscript {
     ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
     ext.project_version = '1.0.1'
+    ext.project_license = 'The Apache Software License, Version 2.0'
+    ext.project_license_tag = 'Apache-2.0'
+    ext.project_license_url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
 
     ext.kotlin_version = '1.0.3'
     ext.jna_version = '4.3.0-SNAPSHOT' // living on the bleeding edge!
@@ -87,8 +90,8 @@ publishing {
                     }
                     licenses {
                         license {
-                            name 'The Apache Software License, Version 2.0'
-                            url 'http://www.apache.org/license/LICENSE-2.0.txt'
+                            name project_license
+                            url project_license_url
                             distribution 'repo'
                         }
                     }
@@ -112,7 +115,7 @@ bintray {
     pkg {
         repo = 'maven'
         name = project_name
-        licenses = ['Apache-2.0']
+        licenses = [project_license_tag]
         publicDownloadNumbers = true
         websiteUrl = "https://github.com/$github_user/$project_name"
         issueTrackerUrl = "https://github.com/$github_user/$project_name/issues"
