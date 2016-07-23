@@ -20,28 +20,21 @@ import com.sun.jna.Platform
 import org.jire.arrowhead.windows.Windows
 
 /**
- * The big Kahuna; _everything_ starts here.
+ * Attempts to open a process of the specified process ID.
+ *
+ * @param processID The ID of the process to open.
  */
-object Arrowhead {
+fun processByID(processID: Int): Process? = when {
+	Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processID)
+	else -> null
+}
 
-	/**
-	 * Attempts to open a process of the specified process ID.
-	 *
-	 * @param processID The ID of the process to open.
-	 */
-	fun processByID(processID: Int): Process? = when {
-		Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processID)
-		else -> null
-	}
-
-	/**
-	 * Attempts to open a process of the specified process name.
-	 *
-	 * @param processName The name of the process to open.
-	 */
-	fun processByName(processName: String): Process? = when {
-		Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processName)
-		else -> null
-	}
-
+/**
+ * Attempts to open a process of the specified process name.
+ *
+ * @param processName The name of the process to open.
+ */
+fun processByName(processName: String): Process? = when {
+	Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processName)
+	else -> null
 }
