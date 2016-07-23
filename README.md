@@ -15,16 +15,16 @@ Sources are native references that can be read from and written to through Arrow
 
 ### Acquiring a process
 
-Use the `Arrowhead` object to acquire a `Process?` by name:
+You can acquire a process using a name (executable file name):
 
 ```kotlin
-val process = Arrowhead.processByName("process.exe")!!
+val process = processByName("process.exe")!!
 ```
 
 You can also acquire by process ID (PID):
 
 ```kotlin
-val process123 = Arrowhead.processByID(123)!!
+val process123 = processByID(123)!!
 ```
 
 ### Acquiring a module
