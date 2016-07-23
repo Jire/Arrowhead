@@ -15,7 +15,10 @@
  */
 
 buildscript {
-    ext.github_user = 'Jire'
+    ext.your_name = 'Thomas Nappo'
+    ext.your_email = 'technology@live.com'
+    ext.your_github_name = 'Jire'
+
     ext.project_name = 'Arrowhead'
     ext.project_description = 'Straightforward native interfacing from Kotlin'
     ext.project_group = 'org.jire.arrowhead'
@@ -91,9 +94,9 @@ publishing {
                     }
                     developers {
                         developer {
-                            id github_user
-                            name 'Thomas Nappo'
-                            email 'technology@live.com'
+                            id your_github_name
+                            name your_name
+                            email your_email
                         }
                     }
                 }
