@@ -15,6 +15,7 @@
  */
 
 buildscript {
+    ext.github_user = 'Jire'
     ext.project_name = 'Arrowhead'
     ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
@@ -89,7 +90,7 @@ publishing {
                     }
                     developers {
                         developer {
-                            id 'Jire'
+                            id github_user
                             name 'Thomas Nappo'
                             email 'technology@live.com'
                         }
@@ -109,10 +110,10 @@ bintray {
         name = project_name
         licenses = ['Apache-2.0']
         publicDownloadNumbers = true
-        websiteUrl = "https://github.com/Jire/$project_name"
-        issueTrackerUrl = "https://github.com/Jire/$project_name/issues"
-        vcsUrl = "https://github.com/Jire/${project_name}.git"
-        githubRepo = "Jire/$project_name"
+        websiteUrl = "https://github.com/$github_user/$project_name"
+        issueTrackerUrl = "https://github.com/$github_user/$project_name/issues"
+        vcsUrl = "https://github.com/$github_user/${project_name}.git"
+        githubRepo = "$github_user/$project_name"
         version {
             name = project_version
             vcsTag = project_version
