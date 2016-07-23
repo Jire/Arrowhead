@@ -19,7 +19,7 @@ buildscript {
     ext.project_name = 'Arrowhead'
     ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
-    ext.project_version = '1.0'
+    ext.project_version = '1.0.1'
 
     ext.kotlin_version = '1.0.3'
     ext.jna_version = '4.3.0-SNAPSHOT' // living on the bleeding edge!
