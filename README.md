@@ -80,7 +80,7 @@ There are no "explicit" writes, as the "implicit" writes are simply method overl
 ### Dealing with structs
 
 Defining structures is [the same as in JNA](https://jna.java.net/nonav/javadoc/overview-summary.html#structures),
-except you should extend `Struct` (of `org.jire.arrowhead`) instead of JNA's `Structure` (of `com.sun.jna.Structure`)
+except you should extend `Struct` (of `org.jire.arrowhead`) instead of JNA's `Structure` (of `com.sun.jna`)
 to take advantage of the reuse ("caching") system and other enhancements like automatic field order.
 
 For JNA and Arrowhead to detect fields correctly, make sure to annotate them with
