@@ -40,4 +40,6 @@ class WindowsModule(override val address: Long, override val process: WindowsPro
 		Native.toString(baseName)!!
 	}
 
+	override val size by lazy { info.SizeOfImage.toLong() }
+
 }
