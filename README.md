@@ -2,7 +2,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5/badge.svg?style=flat)](https://www.versioneye.com/user/projects/578f3deb88bf880040a26ee5)
 [![License](https://img.shields.io/github/license/Jire/Arrowhead.svg)](https://github.com/Jire/Arrowhead/blob/master/LICENSE.txt)
 
-# Arrowhead
+# Arrowhead [ ![Download](https://api.bintray.com/packages/jire/maven/Arrowhead/images/download.svg) ](https://bintray.com/jire/maven/Arrowhead/_latestVersion)
 _Straightforward native interfacing from Kotlin_
 
 ---
