@@ -33,4 +33,11 @@ interface Addressed {
 	 */
 	fun offset(offset: Long) = address + offset
 
+	/**
+	 * Offsets the base address by the specified offset.
+	 *
+	 * @param offset The offset in bytes off the base address.
+	 */
+	fun offset(offset: Int) = offset(offset.toLong())
+
 }
