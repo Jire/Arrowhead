@@ -21,7 +21,7 @@ import com.sun.jna.NativeLibrary
 import com.sun.jna.Pointer
 
 /**
- * Provides zero-garbage `WriteProcessMemory` and `ReadProcessMemory` access.
+ * Provides zero-garbage [WriteProcessMemory] and [ReadProcessMemory] access.
  *
  * The "secret sauce" is avoiding JNA object allocations from translation-necessary types.
  */
