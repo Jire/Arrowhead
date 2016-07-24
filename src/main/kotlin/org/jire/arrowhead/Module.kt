@@ -26,7 +26,7 @@ import com.sun.jna.Pointer
  * This type doubles as an `Addressed` which handles the offsetting for its `Source` operations.
  * All of the `Source` operations are done using its parent process.
  */
-interface Module : Addressed, Source {
+interface Module : Source, Addressed {
 
 	/**
 	 * The process of which this module belongs to.
@@ -38,7 +38,8 @@ interface Module : Addressed, Source {
 	 */
 	val name: String
 
-	override fun read(address: Long, bytesToRead: Int) = process.read(offset(address), bytesToRead)
+	override fun read(address: Long, bytesToRead: Int)
+			= process.read(offset(address), bytesToRead)
 
 	override fun read(address: Long, data: Pointer, bytesToRead: Int)
 			= process.read(offset(address), data, bytesToRead)
