@@ -23,7 +23,7 @@ buildscript {
     ext.project_description = 'Straightforward native interfacing from Kotlin'
     ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
-    ext.project_version = '1.0.1'
+    ext.project_version = '1.0.2'
     ext.project_license = 'The Apache Software License, Version 2.0'
     ext.project_license_tag = 'Apache-2.0'
     ext.project_license_url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -138,7 +138,8 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlin_version
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlin_version
 
     compile group: 'net.java.dev.jna', name: 'jna', version: jna_version
     compile group: 'net.java.dev.jna', name: 'jna-platform', version: jna_version
