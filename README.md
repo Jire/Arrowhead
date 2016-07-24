@@ -84,7 +84,7 @@ except you should extend `Struct` (of `org.jire.arrowhead`) instead of JNA's `St
 to take advantage of the reuse ("caching") system and other enhancements like automatic field order.
 
 For JNA and Arrowhead to detect fields correctly, make sure to annotate them with
-[_@JvmField_](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/).
+[`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/).
 
 To read a struct you can use its read function:
 
