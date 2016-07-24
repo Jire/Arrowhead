@@ -38,6 +38,11 @@ interface Module : Source, Addressed {
 	 */
 	val name: String
 
+	/**
+	 * The size of the module in bytes.
+	 */
+	val size: Long
+
 	override fun read(address: Long, bytesToRead: Int)
 			= process.read(offset(address), bytesToRead)
 
