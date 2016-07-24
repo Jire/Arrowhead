@@ -29,3 +29,21 @@ fun keyState(virtualKeyCode: Int): Int = when {
 	Platform.isWindows() || Platform.isWindowsCE() -> User32.GetKeyState(virtualKeyCode).toInt()
 	else -> throw UnsupportedOperationException("Unsupported platform (osType=${Platform.getOSType()}")
 }
+
+/**
+ * Checks whether or not the key state of the specified virtual key code is pressed.
+ *
+ * @param virtualKeyCode The key code of which to check the state.
+ * @return `true` if the key is pressed, `false` otherwise.
+ * @throws UnsupportedOperationException If the platform is not supported.
+ */
+fun keyPressed(virtualKeyCode: Int) = keyState(virtualKeyCode) < 0
+
+/**
+ * Checks whether or not the key state of the specified virtual key code is released (not pressed).
+ *
+ * @param virtualKeyCode The key code of which to check the state.
+ * @return `false` if the key is pressed, `true` otherwise.
+ * @throws UnsupportedOperationException If the platform is not supported.
+ */
+fun keyReleased(virtualKeyCode: Int) = !keyPressed(virtualKeyCode)
