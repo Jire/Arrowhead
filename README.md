@@ -76,3 +76,17 @@ something[0x123] = true
 ```
 
 There are no "explicit" writes, as the "implicit" writes are simply method overloads.
+
+### Dealing with structs
+
+Defining structures is [the same as in JNA](https://jna.java.net/nonav/javadoc/overview-summary.html#structures),
+except you should extend `Struct` (of `org.jire.arrowhead`) instead of JNA's `Structure` (of `com.sun.jna.Structure`)
+to take advantage of the reuse ("caching") system and other enhancements like automatic field order.
+
+To read a struct you can use its read function:
+
+`struct.read(address = 0x123, source = something)`
+
+To write the struct to an address you can use its write function:
+
+`struct.write(address = 0x123, source = something)`
