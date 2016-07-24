@@ -83,6 +83,9 @@ Defining structures is [the same as in JNA](https://jna.java.net/nonav/javadoc/o
 except you should extend `Struct` (of `org.jire.arrowhead`) instead of JNA's `Structure` (of `com.sun.jna.Structure`)
 to take advantage of the reuse ("caching") system and other enhancements like automatic field order.
 
+For JNA and Arrowhead to detect fields correctly, make sure to annotate them with
+[_@JvmField_](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/).
+
 To read a struct you can use its read function:
 
 `struct.read(address = 0x123, source = something)`
