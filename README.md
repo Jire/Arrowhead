@@ -88,8 +88,12 @@ For JNA and Arrowhead to detect fields correctly, make sure to annotate them wit
 
 To read a struct you can use its read function:
 
-`struct.read(address = 0x123, source = something)`
+```kotlin
+struct.read(address = 0x123, source = something)
+```
 
 To write the struct to an address you can use its write function:
 
-`struct.write(address = 0x123, source = something)`
+```kotlin
+struct.write(address = 0x123, source = something)
+```
