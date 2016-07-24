@@ -29,7 +29,44 @@ abstract class Struct : Structure() {
 	 * Whether or not the struct has been released.
 	 */
 	@Volatile var released = false
-		internal set
+		private set
+
+	/**
+	 * Releases this struct back into the caching pool.
+	 *
+	 * After the struct is released you should no longer use it.
+	 *
+	 * You should not hold a reference to structs you have released.
+	 */
+	fun release() = apply {
+		if (released) throw IllegalStateException("You must renew the struct before releasing it!")
+
+		Structs.map.put(javaClass, this)
+		released = true
+	}
+
+	/**
+	 * Reads at the specified native address into this struct.
+	 *
+	 * @param source The source to read from.
+	 * @param address The native address to read at.
+	 */
+	fun read(source: Source, address: Long) = apply {
+		if (!released) throw IllegalStateException("You must release the struct before renewing it!")
+
+		source.read(address, this)
+		released = false
+	}
+
+	/**
+	 * Writes this struct to the specified native address.
+	 *
+	 * @param source The source to read from.
+	 * @param address The native address to write at.
+	 */
+	fun write(source: Source, address: Long) = apply {
+		source.write(address, this)
+	}
 
 	override fun getFieldOrder(): List<String> = javaClass.declaredFields.map { it.name }
 
