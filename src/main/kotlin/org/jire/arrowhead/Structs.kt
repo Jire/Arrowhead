@@ -64,4 +64,5 @@ object Structs {
  *
  * @param args The arguments to pass to the constructor of the struct.
  */
-inline operator fun <reified T : Struct> KClass<T>.get(vararg args: Any): T = Structs.get(this, *args)
+inline operator fun <reified T : Struct> KClass<T>.get(vararg args: Any)
+		= Structs.get(this, *args) // Explosions can't be passed to get operator... a bug perhaps?
