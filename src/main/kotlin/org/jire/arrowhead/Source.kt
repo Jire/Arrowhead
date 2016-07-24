@@ -44,6 +44,16 @@ interface Source {
 			= read(address, data, bytesToRead)
 
 	/**
+	 * Reads at the specified native address into the specified struct.
+	 *
+	 * @param address The native address to read from.
+	 * @param struct The struct to read into.
+	 * @param bytesToRead The amount of bytes to read. (By default this is the size of the struct.)
+	 */
+	fun read(address: Long, struct: Struct, bytesToRead: Int = struct.size()): Unit
+			= read(address, struct.pointer, bytesToRead)
+
+	/**
 	 * Reads at the specified native address into a memory.
 	 *
 	 * @param address The native address to read from.
@@ -136,6 +146,16 @@ interface Source {
 	 */
 	fun write(address: Long, data: Memory, bytesToWrite: Int = data.size().toInt()): Unit
 			= write(address, data, bytesToWrite)
+
+	/**
+	 * Writes the specified struct to the specified native address.
+	 *
+	 * @param address The native address to write to.
+	 * @param struct The struct to write.
+	 * @param bytesToWrite The amount of bytes to write of the struct. (By default this is the size of the struct.)
+	 */
+	fun write(address: Long, struct: Struct, bytesToWrite: Int = struct.size()): Unit
+			= write(address, struct.pointer, bytesToWrite)
 
 	/**
 	 * Writes at the specified native address to the specified byte value.
