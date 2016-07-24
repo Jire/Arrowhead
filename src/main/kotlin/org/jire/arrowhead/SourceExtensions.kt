@@ -32,6 +32,16 @@ inline fun Source.write(address: Long, bytes: Int, writeBody: Pointer.() -> Unit
 }
 
 /**
+ * Writes to the source at the specified address using a supplied memory.
+ *
+ * @param address The native address to write to.
+ * @param bytes The amount of bytes for the supplied memory.
+ * @param writeBody Applies the write to the pointer.
+ */
+inline fun Source.write(address: Int, bytes: Int, writeBody: Pointer.() -> Unit)
+		= write(address.toLong(), bytes, writeBody)
+
+/**
  * Reads from the source at the specified address with an implicit return type.
  *
  * @param address The native address to read from.
@@ -46,7 +56,7 @@ inline fun Source.write(address: Long, bytes: Int, writeBody: Pointer.() -> Unit
  *                 * Double
  *                 * Boolean
  */
-inline operator fun <reified T : Any> Source.get(address: Long, offset: Long = 0): T = when (T::class.java) {
+inline operator fun <reified T : Any> Source.get(address: Long, offset: Long = 0) = when (T::class.java) {
 	java.lang.Byte::class.java -> byte(address, offset)
 	java.lang.Short::class.java -> short(address, offset)
 	java.lang.Character::class.java -> char(address, offset)
@@ -57,3 +67,21 @@ inline operator fun <reified T : Any> Source.get(address: Long, offset: Long = 0
 	java.lang.Boolean::class.java -> boolean(address, offset)
 	else -> throw IllegalArgumentException()
 } as T
+
+/**
+ * Reads from the source at the specified address with an implicit return type.
+ *
+ * @param address The native address to read from.
+ * @param offset The offset in bytes off the native address.
+ * @param T The implicit return type of one of the following:
+ *                 * Byte
+ *                 * Short
+ *                 * Char
+ *                 * Int
+ *                 * Long
+ *                 * Float
+ *                 * Double
+ *                 * Boolean
+ */
+inline operator fun <reified T : Any> Source.get(address: Int, offset: Long = 0): T
+		= get(address.toLong(), offset)
