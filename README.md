@@ -86,13 +86,25 @@ to take advantage of the reuse ("caching") system and other enhancements like au
 For JNA and Arrowhead to detect fields correctly, make sure to annotate them with
 [`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/).
 
-To read a struct you can use its read function:
+The easiest way to **get a struct** is by referring to its class type and using the `get` extension function.
+
+```kotlin
+val struct = MyStruct::class.get()
+```
+
+If you have a constructor for your struct type, you can use the get operator to pass the arguments in:
+
+```kotlin
+val struct = MyStruct::class["abc", 1, 2, 3]
+```
+
+To read into a struct you can use its read function, which takes the address to read and the source to read from:
 
 ```kotlin
 struct.read(address = 0x123, source = something)
 ```
 
-To write the struct to an address you can use its write function:
+To write the struct to a source you can use its write function, which is similar to reading:
 
 ```kotlin
 struct.write(address = 0x123, source = something)
