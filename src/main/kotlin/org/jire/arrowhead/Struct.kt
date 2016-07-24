@@ -59,6 +59,14 @@ abstract class Struct : Structure() {
 	}
 
 	/**
+	 * Reads at the specified native address into this struct.
+	 *
+	 * @param source The source to read from.
+	 * @param address The native address to read at.
+	 */
+	fun read(source: Source, address: Int) = read(source, address.toLong())
+
+	/**
 	 * Writes this struct to the specified native address.
 	 *
 	 * @param source The source to read from.
@@ -67,6 +75,14 @@ abstract class Struct : Structure() {
 	fun write(source: Source, address: Long) = apply {
 		source.write(address, this)
 	}
+
+	/**
+	 * Writes this struct to the specified native address.
+	 *
+	 * @param source The source to read from.
+	 * @param address The native address to write at.
+	 */
+	fun write(source: Source, address: Int) = write(source, address.toLong())
 
 	override fun getFieldOrder(): List<String> = javaClass.declaredFields.map { it.name }
 
