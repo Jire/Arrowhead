@@ -28,39 +28,39 @@ interface Source {
 	 * Reads at the specified native address into the specified pointer.
 	 *
 	 * @param address The native address to read from.
-	 * @param data The memory to read into.
-	 * @param bytesToRead The amount of bytes to read. (By default this is the size of the memory.)
+	 * @param pointer The pointer to read into.
+	 * @param bytesToRead The amount of bytes to read.
 	 */
-	fun read(address: Long, data: Pointer, bytesToRead: Int)
+	fun read(address: Long, pointer: Pointer, bytesToRead: Int)
 
 	/**
 	 * Reads at the specified native address into the specified pointer.
 	 *
 	 * @param address The native address to read from.
-	 * @param data The memory to read into.
-	 * @param bytesToRead The amount of bytes to read. (By default this is the size of the memory.)
+	 * @param pointer The pointer to read into.
+	 * @param bytesToRead The amount of bytes to read.
 	 */
-	fun read(address: Int, data: Pointer, bytesToRead: Int) = read(address.toLong(), data, bytesToRead)
+	fun read(address: Int, pointer: Pointer, bytesToRead: Int) = read(address.toLong(), pointer, bytesToRead)
 
 	/**
 	 * Reads at the specified native address into the specified memory.
 	 *
 	 * @param address The native address to read from.
-	 * @param data The memory to read into.
+	 * @param memory The memory to read into.
 	 * @param bytesToRead The amount of bytes to read. (By default this is the size of the memory.)
 	 */
-	fun read(address: Long, data: Memory, bytesToRead: Int = data.size().toInt())
-			= read(address, data as Pointer, bytesToRead)
+	fun read(address: Long, memory: Memory, bytesToRead: Int = memory.size().toInt())
+			= read(address, memory as Pointer, bytesToRead)
 
 	/**
 	 * Reads at the specified native address into the specified memory.
 	 *
 	 * @param address The native address to read from.
-	 * @param data The memory to read into.
+	 * @param memory The memory to read into.
 	 * @param bytesToRead The amount of bytes to read. (By default this is the size of the memory.)
 	 */
-	fun read(address: Int, data: Memory, bytesToRead: Int = data.size().toInt())
-			= read(address.toLong(), data, bytesToRead)
+	fun read(address: Int, memory: Memory, bytesToRead: Int = memory.size().toInt())
+			= read(address.toLong(), memory, bytesToRead)
 
 	/**
 	 * Reads at the specified native address into the specified struct.
@@ -89,9 +89,9 @@ interface Source {
 	 * @param bytesToRead The amount of bytes to read.
 	 */
 	fun read(address: Long, bytesToRead: Int): Memory {
-		val resource = MemoryCache[bytesToRead]
-		read(address, resource, bytesToRead) // read to the memory using the implementation
-		return resource
+		val memory = MemoryCache[bytesToRead]
+		read(address, memory, bytesToRead) // read to the memory using the implementation
+		return memory
 	}
 
 	/**
@@ -235,37 +235,37 @@ interface Source {
 	 * Writes the specified memory to the specified native address.
 	 *
 	 * @param address The native address to write to.
-	 * @param data A pointer to the data to write.
+	 * @param pointer A pointer to the pointer to write.
 	 */
-	fun write(address: Long, data: Pointer, bytesToWrite: Int)
+	fun write(address: Long, pointer: Pointer, bytesToWrite: Int)
 
 	/**
 	 * Writes the specified memory to the specified native address.
 	 *
 	 * @param address The native address to write to.
-	 * @param data A pointer to the data to write.
+	 * @param pointer A pointer to the pointer to write.
 	 */
-	fun write(address: Int, data: Pointer, bytesToWrite: Int) = write(address.toLong(), data, bytesToWrite)
+	fun write(address: Int, pointer: Pointer, bytesToWrite: Int) = write(address.toLong(), pointer, bytesToWrite)
 
 	/**
 	 * Writes the specified memory to the specified native address.
 	 *
 	 * @param address The native address to write to.
-	 * @param data A memory pointer of the data to write.
+	 * @param memory The memory to write.
 	 * @param bytesToWrite The amount of bytes to write of the memory. (By default this is the size of the memory.)
 	 */
-	fun write(address: Long, data: Memory, bytesToWrite: Int = data.size().toInt())
-			= write(address, data as Pointer, bytesToWrite)
+	fun write(address: Long, memory: Memory, bytesToWrite: Int = memory.size().toInt())
+			= write(address, memory as Pointer, bytesToWrite)
 
 	/**
 	 * Writes the specified memory to the specified native address.
 	 *
 	 * @param address The native address to write to.
-	 * @param data A memory pointer of the data to write.
+	 * @param memory The memory to write.
 	 * @param bytesToWrite The amount of bytes to write of the memory. (By default this is the size of the memory.)
 	 */
-	fun write(address: Int, data: Memory, bytesToWrite: Int = data.size().toInt())
-			= write(address.toLong(), data, bytesToWrite)
+	fun write(address: Int, memory: Memory, bytesToWrite: Int = memory.size().toInt())
+			= write(address.toLong(), memory, bytesToWrite)
 
 	/**
 	 * Writes the specified struct to the specified native address.

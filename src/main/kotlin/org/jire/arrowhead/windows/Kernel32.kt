@@ -28,12 +28,12 @@ import com.sun.jna.Pointer
 object Kernel32 {
 
 	/**
-	 * Writes data to an area of memory in a specified process. The entire area
+	 * Writes memory to an area of memory in a specified process. The entire area
 	 * to be written to must be accessible or the operation fails.
 	 * @param hProcess A handle to the process memory to be modified.
 	 * @param lpBaseAddress The base address in the specified process to which
-	 * data is written.
-	 * @param lpBuffer The buffer that contains data to be written in the
+	 * memory is written.
+	 * @param lpBuffer The buffer that contains memory to be written in the
 	 * address space of the specified process.
 	 * @param nSize The number of bytes to be written to the specified process.
 	 * @param lpNumberOfBytesWritten A variable that receives the number of bytes
@@ -48,7 +48,7 @@ object Kernel32 {
 	                                nSize: Int, lpNumberOfBytesWritten: Int): Long
 
 	/**
-	 * Reads data from an area of memory in a specified process. The entire area
+	 * Reads memory from an area of memory in a specified process. The entire area
 	 * to be read must be accessible or the operation fails.
 	 *
 	 * @see <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms680553(v=vs.85).aspx">MSDN</a>
@@ -58,8 +58,8 @@ object Kernel32 {
 	 * @param lpBaseAddress
 	 *            A pointer to the base address in the specified process from
 	 *            which to read. <br>
-	 *            Before any data transfer occurs, the system verifies that all
-	 *            data in the base address and memory of the specified size is
+	 *            Before any memory transfer occurs, the system verifies that all
+	 *            memory in the base address and memory of the specified size is
 	 *            accessible for read access, and if it is not accessible the
 	 *            function fails.
 	 * @param lpBuffer

@@ -60,12 +60,12 @@ class WindowsProcess(override val id: Int, val handle: WinNT.HANDLE) : Process {
 		return@lazy map
 	}
 
-	override fun read(address: Long, data: Pointer, bytesToRead: Int) {
-		Kernel32.ReadProcessMemory(handle.pointer, address, data, bytesToRead, 0)
+	override fun read(address: Long, pointer: Pointer, bytesToRead: Int) {
+		Kernel32.ReadProcessMemory(handle.pointer, address, pointer, bytesToRead, 0)
 	}
 
-	override fun write(address: Long, data: Pointer, bytesToWrite: Int) {
-		Kernel32.WriteProcessMemory(handle.pointer, address, data, bytesToWrite, 0)
+	override fun write(address: Long, pointer: Pointer, bytesToWrite: Int) {
+		Kernel32.WriteProcessMemory(handle.pointer, address, pointer, bytesToWrite, 0)
 	}
 
 }
