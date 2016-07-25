@@ -45,13 +45,13 @@ object MemoryCache {
 	 * @param clear Whether or not to clear (zero-out) the returned memory.
 	 */
 	operator fun get(size: Int, clear: Boolean = true): Memory {
-		var resource = map.get(size)
-		if (resource == null) {
-			resource = Memory(size.toLong())
+		var memory = map.get(size)
+		if (memory == null) {
+			memory = Memory(size.toLong())
 			if (size <= CACHE_BYTE_MAX)
-				map.put(size, resource)
-		} else if (clear) resource.clear()
-		return resource
+				map.put(size, memory)
+		} else if (clear) memory.clear()
+		return memory
 	}
 
 }

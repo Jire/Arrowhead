@@ -36,17 +36,17 @@ object Structs {
 	 * @param args The arguments to pass to the constructor of the struct.
 	 */
 	operator inline fun <reified T : Struct> get(type: Class<*>, vararg args: Any): T {
-		var cached = map[type]
-		if (cached == null) {
-			cached = (if (args.size > 0) {
+		var struct = map[type]
+		if (struct == null) {
+			struct = (if (args.size > 0) {
 				val types = arrayOfNulls<Class<*>>(args.size)
 				type.declaredFields.forEachIndexed { i, field -> types[i] = field.type }
 				val constructor = type.getDeclaredConstructor(*types)
 				constructor.newInstance(*args)
 			} else type.newInstance()) as T
-			map[type] = cached
+			map[type] = struct
 		}
-		return cached as T
+		return struct as T
 	}
 
 	/**
