@@ -43,9 +43,6 @@ interface Module : Source, Addressed {
 	 */
 	val size: Long
 
-	override fun read(address: Long, bytesToRead: Int)
-			= process.read(offset(address), bytesToRead)
-
 	override fun read(address: Long, pointer: Pointer, bytesToRead: Int)
 			= process.read(offset(address), pointer, bytesToRead)
 

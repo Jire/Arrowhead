@@ -40,7 +40,8 @@ interface Source {
 	 * @param pointer The pointer to read into.
 	 * @param bytesToRead The amount of bytes to read.
 	 */
-	fun read(address: Int, pointer: Pointer, bytesToRead: Int) = read(address.toLong(), pointer, bytesToRead)
+	fun read(address: Int, pointer: Pointer, bytesToRead: Int)
+			= read(address.toLong(), pointer, bytesToRead)
 
 	/**
 	 * Reads at the specified native address into the specified memory.
