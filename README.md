@@ -7,13 +7,13 @@ _Straightforward native interfacing from Kotlin_
 
 ---
 
-### Sources
+## Sources
 
 Sources are native references that can be read from and written to through Arrowhead.
 
 `Process` and `Module` are the two sources available.
 
-### Acquiring a process
+## Acquiring a process
 
 You can acquire a process using a name (executable file name):
 
@@ -27,7 +27,7 @@ You can also acquire by process ID (PID):
 val process123 = processByID(123)!!
 ```
 
-### Acquiring a module
+## Acquiring a module
 
 You can use `.modules` off a process for a map of the module name to the `Module`.
 
@@ -35,7 +35,7 @@ You can use `.modules` off a process for a map of the module name to the `Module
 val module = process.modules["module.dll"]!!
 ```
 
-### Reading from a source
+## Reading from a source
 
 You can use the implicit data type to read from an address:
 
@@ -62,7 +62,7 @@ val someFloat = process.float(0x123)
 val someBoolean = process.boolean(0x123)
 ```
 
-### Writing to a source
+## Writing to a source
 
 Writing to a source is just as easy as reading.
 
@@ -77,7 +77,7 @@ something[0x123] = true
 
 There are no "explicit" writes, as the "implicit" writes are simply method overloads.
 
-### Dealing with structs
+## Dealing with structs
 
 Defining structures is [the same as in JNA](https://jna.java.net/nonav/javadoc/overview-summary.html#structures),
 except you should extend `Struct` (of `org.jire.arrowhead`) instead of JNA's `Structure` (of `com.sun.jna`)
