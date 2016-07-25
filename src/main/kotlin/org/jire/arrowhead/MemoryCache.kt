@@ -42,9 +42,9 @@ object MemoryCache {
 	 * If the size meets the cached size limit, it will be reused.
 	 *
 	 * @param size The desired amount of bytes of the memory.
-	 * @param clear Whether or not to clear (zero-out) the returned memory.
+	 * @param clear Whether or not to clear (zero-out) the returned memory. (By default this is `false`.)
 	 */
-	operator fun get(size: Int, clear: Boolean = true): Memory {
+	operator fun get(size: Int, clear: Boolean = false): Memory {
 		var memory = map.get(size)
 		if (memory == null) {
 			memory = Memory(size.toLong())
