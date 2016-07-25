@@ -87,9 +87,10 @@ interface Source {
 	 *
 	 * @param address The native address to read from.
 	 * @param bytesToRead The amount of bytes to read.
+	 * @param fromCache Whether or not to use the memory cache for the supplied memory. (By default this is `true`.)
 	 */
-	fun read(address: Long, bytesToRead: Int): Memory {
-		val memory = MemoryCache[bytesToRead]
+	fun read(address: Long, bytesToRead: Int, fromCache: Boolean = true): Memory {
+		val memory = if (fromCache) MemoryCache[bytesToRead] else Memory(bytesToRead.toLong())
 		read(address, memory, bytesToRead) // read to the memory using the implementation
 		return memory
 	}
