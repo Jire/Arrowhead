@@ -100,8 +100,10 @@ interface Source {
 	 *
 	 * @param address The native address to read from.
 	 * @param bytesToRead The amount of bytes to read.
+	 * @param fromCache Whether or not to use the memory cache for the supplied memory. (By default this is `true`.)
 	 */
-	fun read(address: Int, bytesToRead: Int) = read(address.toLong(), bytesToRead)
+	fun read(address: Int, bytesToRead: Int, fromCache: Boolean = true)
+			= read(address.toLong(), bytesToRead, fromCache)
 
 	/**
 	 * Reads a byte at the specified native address, offset by the specified offset.
