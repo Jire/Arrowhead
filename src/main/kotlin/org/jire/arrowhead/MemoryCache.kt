@@ -22,7 +22,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 /**
  * Fast memory caching using a fast array map.
  *
- * Not thread safe. Do not use results after they have been reused.
+ * Do not use results after they have been reused.
  */
 object MemoryCache {
 
@@ -34,7 +34,7 @@ object MemoryCache {
 	/**
 	 * The resource map cache, mapping size in bytes to memory.
 	 */
-	private val map = Int2ObjectArrayMap<Memory>()
+	private val map = ThreadLocal.withInitial { Int2ObjectArrayMap<Memory>(CACHE_BYTE_MAX / 2) }
 
 	/**
 	 * Returns a zeroed-out memory of the specified size in bytes.
@@ -45,6 +45,8 @@ object MemoryCache {
 	 * @param clear Whether or not to clear (zero-out) the returned memory. (By default this is `false`.)
 	 */
 	operator fun get(size: Int, clear: Boolean = false): Memory {
+		val map = map.get()
+
 		var memory = map.get(size)
 		if (memory == null) {
 			memory = Memory(size.toLong())
