@@ -101,7 +101,7 @@ to take advantage of the reuse ("caching") system and other enhancements like au
 For JNA and Arrowhead to detect fields correctly, make sure to annotate them with
 [`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/).
 
-The easiest way to **get a struct** is by referring to its class type and using the `get` extension function.
+The easiest way to get a struct is by referring to its class type and using the `get` extension function.
 
 ```kotlin
 val struct = MyStruct::class.get()
