@@ -1,4 +1,4 @@
-# Arrowhead [ ![Download](https://api.bintray.com/packages/jire/maven/Arrowhead/images/download.svg) ](https://bintray.com/jire/maven/Arrowhead/_latestVersion)
+# Arrowhead
 _Straightforward native interfacing from Kotlin_
 
 [![Build Status](https://travis-ci.org/Jire/Arrowhead.svg?branch=master)](https://travis-ci.org/Jire/Arrowhead)
