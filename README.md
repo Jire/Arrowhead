@@ -124,3 +124,9 @@ To write the struct to a source you can use its write function, which is similar
 ```kotlin
 struct.write(address = 0x123, source = something)
 ```
+
+After you're done using a struct you should release it back into the caching pool:
+
+```kotlin
+struct.release()
+```
