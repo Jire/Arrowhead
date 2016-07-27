@@ -17,7 +17,9 @@
 package org.jire.arrowhead
 
 import com.sun.jna.Platform
+import org.jire.arrowhead.linux.LinuxProcess
 import org.jire.arrowhead.windows.Windows
+import java.util.*
 
 /**
  * Attempts to open a process of the specified process ID.
@@ -26,6 +28,7 @@ import org.jire.arrowhead.windows.Windows
  */
 fun processByID(processID: Int): Process? = when {
 	Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processID)
+	Platform.isLinux() -> LinuxProcess(processID)
 	else -> null
 }
 
@@ -36,5 +39,13 @@ fun processByID(processID: Int): Process? = when {
  */
 fun processByName(processName: String): Process? = when {
 	Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processName)
+	Platform.isLinux() -> {
+		val search = Runtime.getRuntime().exec(arrayOf("bash", "-c",
+				"ps -A | grep -m1 \"$processName\" | awk '{print $1}'"))
+		val scanner = Scanner(search.inputStream)
+		val processID = scanner.nextInt()
+		scanner.close()
+		processByID(processID)
+	}
 	else -> null
 }
