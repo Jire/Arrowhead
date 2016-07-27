@@ -7,7 +7,7 @@ _Straightforward native interfacing from Kotlin_
 
 ### Gradle
 ```groovy
-compile group: 'org.jire.arrowhead', name: 'arrowhead', version: '1.0.5'
+compile group: 'org.jire.arrowhead', name: 'arrowhead', version: '1.0.6'
 ```
 
 ### Maven
@@ -15,7 +15,7 @@ compile group: 'org.jire.arrowhead', name: 'arrowhead', version: '1.0.5'
 <dependency>
   <groupId>org.jire.arrowhead</groupId>
   <artifactId>arrowhead</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
 </dependency>
 ```
 
