@@ -25,23 +25,33 @@ import com.sun.jna.Pointer
 interface Source {
 
 	/**
-	 * Reads at the specified native address into the specified pointer.
+	 * Reads at the specified native address into the specified data.
 	 *
-	 * @param address The native address to read from.
-	 * @param pointer The pointer to read into.
+	 * @param address A data to the native address to read from.
+	 * @param data A pointer to the data to read into.
 	 * @param bytesToRead The amount of bytes to read.
 	 */
-	fun read(address: Long, pointer: Pointer, bytesToRead: Int)
+	fun read(address: Pointer, data: Pointer, bytesToRead: Int)
 
 	/**
-	 * Reads at the specified native address into the specified pointer.
+	 * Reads at the specified native address into the specified data.
 	 *
 	 * @param address The native address to read from.
-	 * @param pointer The pointer to read into.
+	 * @param data A pointer to the data to read into.
 	 * @param bytesToRead The amount of bytes to read.
 	 */
-	fun read(address: Int, pointer: Pointer, bytesToRead: Int)
-			= read(address.toLong(), pointer, bytesToRead)
+	fun read(address: Long, data: Pointer, bytesToRead: Int)
+			= read(PointerCache[address], data, bytesToRead)
+
+	/**
+	 * Reads at the specified native address into the specified data.
+	 *
+	 * @param address The native address to read from.
+	 * @param pointer A pointer to the data to read into.
+	 * @param bytesToRead The amount of bytes to read.
+	 */
+	fun read(address: Int, data: Pointer, bytesToRead: Int)
+			= read(address.toLong(), data, bytesToRead)
 
 	/**
 	 * Reads at the specified native address into the specified memory.
@@ -239,17 +249,26 @@ interface Source {
 	 * Writes the specified memory to the specified native address.
 	 *
 	 * @param address The native address to write to.
-	 * @param pointer A pointer to the pointer to write.
+	 * @param data A pointer to the data to write to.
 	 */
-	fun write(address: Long, pointer: Pointer, bytesToWrite: Int)
+	fun write(address: Pointer, data: Pointer, bytesToWrite: Int)
 
 	/**
 	 * Writes the specified memory to the specified native address.
 	 *
 	 * @param address The native address to write to.
-	 * @param pointer A pointer to the pointer to write.
+	 * @param data A pointer to the data to write to.
 	 */
-	fun write(address: Int, pointer: Pointer, bytesToWrite: Int) = write(address.toLong(), pointer, bytesToWrite)
+	fun write(address: Long, data: Pointer, bytesToWrite: Int)
+			= write(PointerCache[address], data, bytesToWrite)
+
+	/**
+	 * Writes the specified memory to the specified native address.
+	 *
+	 * @param address The native address to write to.
+	 * @param data A pointer to the data to write to.
+	 */
+	fun write(address: Int, data: Pointer, bytesToWrite: Int) = write(address.toLong(), data, bytesToWrite)
 
 	/**
 	 * Writes the specified memory to the specified native address.

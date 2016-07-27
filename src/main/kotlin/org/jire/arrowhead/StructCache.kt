@@ -22,7 +22,7 @@ import kotlin.reflect.KClass
 /**
  * Caching and more for [Struct]s.
  */
-object Structs {
+object StructCache {
 
 	/**
 	 * The caching map which maps types to their struct pool.
@@ -65,4 +65,4 @@ object Structs {
  * @param args The arguments to pass to the constructor of the struct.
  */
 inline operator fun <reified T : Struct> KClass<T>.get(vararg args: Any)
-		= Structs.get(this, *args) // Explosions can't be passed to get operator... a bug perhaps?
+		= StructCache.get(this, *args) // Explosions can't be passed to get operator... a bug perhaps?

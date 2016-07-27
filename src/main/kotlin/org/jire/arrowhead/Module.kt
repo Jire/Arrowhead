@@ -43,10 +43,16 @@ interface Module : Source, Addressed {
 	 */
 	val size: Long
 
-	override fun read(address: Long, pointer: Pointer, bytesToRead: Int)
-			= process.read(offset(address), pointer, bytesToRead)
+	override fun read(address: Pointer, data: Pointer, bytesToRead: Int)
+			= process.read(address, data, bytesToRead)
 
-	override fun write(address: Long, pointer: Pointer, bytesToWrite: Int)
-			= process.write(offset(address), pointer, bytesToWrite)
+	override fun write(address: Pointer, data: Pointer, bytesToWrite: Int)
+			= process.write(address, data, bytesToWrite)
+
+	override fun read(address: Long, data: Pointer, bytesToRead: Int)
+			= process.read(offset(address), data, bytesToRead)
+
+	override fun write(address: Long, data: Pointer, bytesToWrite: Int)
+			= process.write(offset(address), data, bytesToWrite)
 
 }

@@ -61,13 +61,13 @@ class WindowsProcess(override val id: Int, val handle: WinNT.HANDLE) : Process {
 		return@lazy map
 	}
 
-	override fun read(address: Long, pointer: Pointer, bytesToRead: Int) {
-		if (Kernel32.ReadProcessMemory(handle.pointer, address, pointer, bytesToRead, 0) <= 0)
+	override fun read(address: Pointer, data: Pointer, bytesToRead: Int) {
+		if (Kernel32.ReadProcessMemory(handle.pointer, address, data, bytesToRead, 0) <= 0)
 			throw Win32Exception(Native.getLastError())
 	}
 
-	override fun write(address: Long, pointer: Pointer, bytesToWrite: Int) {
-		if (Kernel32.WriteProcessMemory(handle.pointer, address, pointer, bytesToWrite, 0) <= 0)
+	override fun write(address: Pointer, data: Pointer, bytesToWrite: Int) {
+		if (Kernel32.WriteProcessMemory(handle.pointer, address, data, bytesToWrite, 0) <= 0)
 			throw Win32Exception(Native.getLastError())
 	}
 

@@ -23,7 +23,7 @@ import com.sun.jna.Pointer
  *
  * @param address The native address to write to.
  * @param bytes The amount of bytes for the supplied memory.
- * @param writeBody Applies the write to the pointer.
+ * @param writeBody Applies the write to the data.
  */
 inline fun Source.write(address: Long, bytes: Int, writeBody: Pointer.() -> Unit) {
 	val resource = MemoryCache[bytes]
@@ -36,7 +36,7 @@ inline fun Source.write(address: Long, bytes: Int, writeBody: Pointer.() -> Unit
  *
  * @param address The native address to write to.
  * @param bytes The amount of bytes for the supplied memory.
- * @param writeBody Applies the write to the pointer.
+ * @param writeBody Applies the write to the data.
  */
 inline fun Source.write(address: Int, bytes: Int, writeBody: Pointer.() -> Unit)
 		= write(address.toLong(), bytes, writeBody)

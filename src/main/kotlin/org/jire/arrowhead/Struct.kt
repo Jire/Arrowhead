@@ -19,7 +19,7 @@ package org.jire.arrowhead
 import com.sun.jna.Structure
 
 /**
- * Represents a native struct, with the ability to be reused via [Structs].
+ * Represents a native struct, with the ability to be reused via [StructCache].
  *
  * All fields which are to be used as native members must be annotated with [@JvmField][kotlin.jvm.JvmField].
  */
@@ -41,7 +41,7 @@ abstract class Struct : Structure() {
 	fun release() = apply {
 		if (released) throw IllegalStateException("You must renew the struct before releasing it!")
 
-		Structs.map.put(javaClass, this)
+		StructCache.map.put(javaClass, this)
 		released = true
 	}
 
