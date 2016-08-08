@@ -47,7 +47,7 @@ interface Source {
 	 * Reads at the specified native address into the specified data.
 	 *
 	 * @param address The native address to read from.
-	 * @param pointer A pointer to the data to read into.
+	 * @param data A pointer to the data to read into.
 	 * @param bytesToRead The amount of bytes to read.
 	 */
 	fun read(address: Int, data: Pointer, bytesToRead: Int)
