@@ -48,9 +48,10 @@ fun keyPressed(virtualKeyCode: Int) = keyState(virtualKeyCode) < 0
  * @return `true` if the key is pressed, `false` otherwise.
  * @throws UnsupportedOperationException If the platform is not supported.
  */
-inline fun keyPressed(virtualKeyCode: Int, action: () -> Unit) {
-	if (keyPressed(virtualKeyCode)) action()
-}
+inline fun keyPressed(virtualKeyCode: Int, action: () -> Unit) = if (keyPressed(virtualKeyCode)) {
+	action()
+	true
+} else false
 
 /**
  * Checks whether or not the key state of the specified virtual key code is released (not pressed).
@@ -70,6 +71,7 @@ fun keyReleased(virtualKeyCode: Int) = !keyPressed(virtualKeyCode)
  * @return `false` if the key is pressed, `true` otherwise.
  * @throws UnsupportedOperationException If the platform is not supported.
  */
-inline fun keyReleased(virtualKeyCode: Int, action: () -> Unit) {
-	if (keyReleased(virtualKeyCode)) action()
-}
+inline fun keyReleased(virtualKeyCode: Int, action: () -> Unit) = if (keyReleased(virtualKeyCode)) {
+	action()
+	true
+} else false
