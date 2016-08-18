@@ -40,6 +40,19 @@ fun keyState(virtualKeyCode: Int): Int = when {
 fun keyPressed(virtualKeyCode: Int) = keyState(virtualKeyCode) < 0
 
 /**
+ * Checks whether or not the key state of the specified virtual key code is pressed,
+ * then runs the specified action code block.
+ *
+ * @param virtualKeyCode The key code of which to check the state.
+ * @param action The code to run if the key is pressed.
+ * @return `true` if the key is pressed, `false` otherwise.
+ * @throws UnsupportedOperationException If the platform is not supported.
+ */
+inline fun keyPressed(virtualKeyCode: Int, action: () -> Unit) {
+	if (keyPressed(virtualKeyCode)) action()
+}
+
+/**
  * Checks whether or not the key state of the specified virtual key code is released (not pressed).
  *
  * @param virtualKeyCode The key code of which to check the state.
@@ -47,3 +60,16 @@ fun keyPressed(virtualKeyCode: Int) = keyState(virtualKeyCode) < 0
  * @throws UnsupportedOperationException If the platform is not supported.
  */
 fun keyReleased(virtualKeyCode: Int) = !keyPressed(virtualKeyCode)
+
+/**
+ * Checks whether or not the key state of the specified virtual key code is released (not pressed),
+ * then runs the specified action code block.
+ *
+ * @param virtualKeyCode The key code of which to check the state.
+ * @param action The code to run if the key is released (not pressed).
+ * @return `false` if the key is pressed, `true` otherwise.
+ * @throws UnsupportedOperationException If the platform is not supported.
+ */
+inline fun keyReleased(virtualKeyCode: Int, action: () -> Unit) {
+	if (keyReleased(virtualKeyCode)) action()
+}
