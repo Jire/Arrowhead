@@ -32,6 +32,7 @@ import com.sun.jna.platform.win32.WinNT
 import com.sun.jna.ptr.IntByReference
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import org.jire.arrowhead.Process
+import java.util.*
 import com.sun.jna.platform.win32.Kernel32.INSTANCE as JNAKernel32
 import com.sun.jna.platform.win32.Psapi.INSTANCE as JNAPsapi
 import org.jire.arrowhead.windows.Psapi.Companion.INSTANCE as Psapi
@@ -41,8 +42,10 @@ import org.jire.arrowhead.windows.Psapi.Companion.INSTANCE as Psapi
  */
 class WindowsProcess(override val id: Int, val handle: WinNT.HANDLE) : Process {
 
-	override val modules by lazy {
-		val map = Object2ObjectArrayMap<String, WindowsModule>()
+	private val modulesMap = Collections.synchronizedMap(Object2ObjectArrayMap<String, WindowsModule>())
+
+	override fun loadModules() {
+		modulesMap.clear()
 
 		val modules = arrayOfNulls<WinDef.HMODULE>(1024)
 		val needed = IntByReference()
@@ -53,13 +56,13 @@ class WindowsProcess(override val id: Int, val handle: WinNT.HANDLE) : Process {
 				if (JNAPsapi.GetModuleInformation(handle, hModule, info, info.size())) {
 					val address = Pointer.nativeValue(hModule.pointer)
 					val module = WindowsModule(address, this, hModule, info)
-					map.put(module.name, module)
+					modulesMap.put(module.name, module)
 				}
 			}
 		}
-
-		return@lazy map
 	}
+
+	override val modules: Map<String, WindowsModule> = modulesMap
 
 	override fun read(address: Pointer, data: Pointer, bytesToRead: Int) {
 		if (Kernel32.ReadProcessMemory(handle.pointer, address, data, bytesToRead, 0) <= 0)

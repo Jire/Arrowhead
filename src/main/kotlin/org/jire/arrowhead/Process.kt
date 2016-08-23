@@ -42,4 +42,11 @@ interface Process : Source {
 	 */
 	val modules: Map<String, Module>
 
+	/**
+	 * Loads the modules into the module map.
+	 *
+	 * This function can be used to reload the modules as well.
+	 */
+	fun loadModules()
+
 }

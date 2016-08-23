@@ -20,17 +20,22 @@ import com.sun.jna.Pointer
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import org.jire.arrowhead.Module
 import org.jire.arrowhead.Process
+import java.lang.Long.parseLong
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.lang.Long.parseLong
+import java.util.*
 
 class LinuxProcess(override val id: Int) : Process {
 
 	private val local = ThreadLocal.withInitial { iovec() }
 	private val remote = ThreadLocal.withInitial { iovec() }
 
-	override val modules: Map<String, Module> by lazy {
-		val map = Object2ObjectArrayMap<String, Module>()
+	private val modulesMap = Collections.synchronizedMap(Object2ObjectArrayMap<String, LinuxModule>())
+
+	override val modules: Map<String, Module> = modulesMap
+
+	override fun loadModules() {
+		modulesMap.clear()
 
 		for (line in Files.readAllLines(Paths.get("/proc/$id/maps"))) {
 			val split = line.split(" ")
@@ -53,10 +58,8 @@ class LinuxProcess(override val id: Int) : Process {
 			}
 
 			val moduleName = path.substring(path.lastIndexOf("/") + 1, path.length)
-			map.put(moduleName, LinuxModule(start, this, moduleName, end - start))
+			modulesMap.put(moduleName, LinuxModule(start, this, moduleName, end - start))
 		}
-
-		return@lazy map
 	}
 
 	override fun read(address: Pointer, data: Pointer, bytesToRead: Int) {
