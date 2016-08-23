@@ -29,12 +29,12 @@ object MemoryCache {
 	/**
 	 * The maximum size of a memory in bytes to cache.
 	 */
-	const val CACHE_BYTE_MAX = 8
+	const val CACHE_BYTE_MAX = 128
 
 	/**
 	 * The resource map cache, mapping size in bytes to memory.
 	 */
-	private val map = ThreadLocal.withInitial { Int2ObjectArrayMap<Memory>(CACHE_BYTE_MAX / 2) }
+	private val map = ThreadLocal.withInitial { Int2ObjectArrayMap<Memory>(64) }
 
 	/**
 	 * Returns a zeroed-out memory of the specified size in bytes.
