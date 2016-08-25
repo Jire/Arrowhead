@@ -100,10 +100,10 @@ interface Source {
 	 * @param bytesToRead The amount of bytes to read.
 	 * @param fromCache Whether or not to use the memory cache for the supplied memory. (By default this is `true`.)
 	 */
-	fun read(address: Long, bytesToRead: Int, fromCache: Boolean = true): Memory {
+	fun read(address: Long, bytesToRead: Int, fromCache: Boolean = true): Memory? {
 		val memory = if (fromCache) MemoryCache[bytesToRead] else Memory(bytesToRead.toLong())
-		read(address, memory, bytesToRead) // read to the memory using the implementation
-		return memory
+		if (read(address, memory, bytesToRead)) return memory // read to the memory using the implementation
+		return null // invalid result
 	}
 
 	/**
@@ -122,7 +122,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun byte(address: Long, offset: Long = 0) = read(address, 1).getByte(offset)
+	fun byte(address: Long, offset: Long = 0) = read(address, 1)?.getByte(offset)
 
 	/**
 	 * Reads a byte at the specified native address, offset by the specified offset.
@@ -138,7 +138,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun short(address: Long, offset: Long = 0) = read(address, 2).getShort(offset)
+	fun short(address: Long, offset: Long = 0) = read(address, 2)?.getShort(offset)
 
 	/**
 	 * Reads a short at the specified native address, offset by the specified offset.
@@ -154,7 +154,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun char(address: Long, offset: Long = 0) = read(address, 2).getChar(offset)
+	fun char(address: Long, offset: Long = 0) = read(address, 2)?.getChar(offset)
 
 	/**
 	 * Reads a char at the specified native address, offset by the specified offset.
@@ -170,7 +170,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun int(address: Long, offset: Long = 0) = read(address, 4).getInt(offset)
+	fun int(address: Long, offset: Long = 0) = read(address, 4)?.getInt(offset)
 
 	/**
 	 * Reads an int at the specified native address, offset by the specified offset.
@@ -186,7 +186,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun long(address: Long, offset: Long = 0) = read(address, 8).getLong(offset)
+	fun long(address: Long, offset: Long = 0) = read(address, 8)?.getLong(offset)
 
 	/**
 	 * Reads a long at the specified native address, offset by the specified offset.
@@ -203,7 +203,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun float(address: Long, offset: Long = 0) = read(address, 4).getFloat(offset)
+	fun float(address: Long, offset: Long = 0) = read(address, 4)?.getFloat(offset)
 
 	/**
 	 * Reads a float at the specified native address, offset by the specified offset.
@@ -219,7 +219,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun double(address: Long, offset: Long = 0) = read(address, 8).getDouble(offset)
+	fun double(address: Long, offset: Long = 0) = read(address, 8)?.getDouble(offset)
 
 	/**
 	 * Reads a double at the specified native address, offset by the specified offset.
@@ -235,7 +235,7 @@ interface Source {
 	 * @param address The native address to read from.
 	 * @param offset The offset in bytes off the native address.
 	 */
-	fun boolean(address: Long, offset: Long = 0) = byte(address, offset).unsign() > 0
+	fun boolean(address: Long, offset: Long = 0) = byte(address, offset)!!.unsign() > 0
 
 	/**
 	 * Reads a boolean at the specified native address, offset by the specified offset.
