@@ -17,7 +17,7 @@
 buildscript {
     ext.your_name = 'Thomas Nappo'
     ext.your_email = 'technology@live.com'
-    ext.your_github_name = 'Jire'
+    ext.your_github_name = 'jire'
 
     ext.project_name = 'Arrowhead'
     ext.project_description = 'Straightforward native interfacing from Kotlin'
@@ -42,7 +42,7 @@ buildscript {
 }
 
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id "com.jfrog.bintray" version "1.7.1"
 }
 
 group project_group
