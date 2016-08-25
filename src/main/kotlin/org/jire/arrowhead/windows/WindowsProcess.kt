@@ -26,7 +26,6 @@ package org.jire.arrowhead.windows
 import com.sun.jna.Native
 import com.sun.jna.Pointer
 import com.sun.jna.platform.win32.Psapi.MODULEINFO
-import com.sun.jna.platform.win32.Win32Exception
 import com.sun.jna.platform.win32.WinDef
 import com.sun.jna.platform.win32.WinNT
 import com.sun.jna.ptr.IntByReference
@@ -64,14 +63,10 @@ class WindowsProcess(override val id: Int, val handle: WinNT.HANDLE) : Process {
 
 	override val modules: Map<String, WindowsModule> = modulesMap
 
-	override fun read(address: Pointer, data: Pointer, bytesToRead: Int) {
-		if (Kernel32.ReadProcessMemory(handle.pointer, address, data, bytesToRead, 0) <= 0)
-			throw Win32Exception(Native.getLastError())
-	}
+	override fun read(address: Pointer, data: Pointer, bytesToRead: Int)
+			= Kernel32.ReadProcessMemory(handle.pointer, address, data, bytesToRead, 0) > 0
 
-	override fun write(address: Pointer, data: Pointer, bytesToWrite: Int) {
-		if (Kernel32.WriteProcessMemory(handle.pointer, address, data, bytesToWrite, 0) <= 0)
-			throw Win32Exception(Native.getLastError())
-	}
+	override fun write(address: Pointer, data: Pointer, bytesToWrite: Int)
+			= Kernel32.WriteProcessMemory(handle.pointer, address, data, bytesToWrite, 0) > 0
 
 }

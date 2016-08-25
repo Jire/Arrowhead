@@ -62,7 +62,7 @@ class LinuxProcess(override val id: Int) : Process {
 		}
 	}
 
-	override fun read(address: Pointer, data: Pointer, bytesToRead: Int) {
+	override fun read(address: Pointer, data: Pointer, bytesToRead: Int): Boolean {
 		val local = local.get()
 		local.iov_base = data
 		local.iov_len = bytesToRead
@@ -71,11 +71,10 @@ class LinuxProcess(override val id: Int) : Process {
 		remote.iov_base = address
 		remote.iov_len = bytesToRead
 
-		if (uio.process_vm_readv(id, local, 1, remote, 1, 0) != bytesToRead.toLong())
-			throw IllegalStateException("Failed to read $bytesToRead bytes at address $address")
+		return bytesToRead.toLong() == uio.process_vm_readv(id, local, 1, remote, 1, 0)
 	}
 
-	override fun write(address: Pointer, data: Pointer, bytesToWrite: Int) {
+	override fun write(address: Pointer, data: Pointer, bytesToWrite: Int): Boolean {
 		val local = local.get()
 		local.iov_base = data
 		local.iov_len = bytesToWrite
@@ -84,8 +83,7 @@ class LinuxProcess(override val id: Int) : Process {
 		remote.iov_base = address
 		remote.iov_len = bytesToWrite
 
-		if (uio.process_vm_writev(id, local, 1, remote, 1, 0) != bytesToWrite.toLong())
-			throw IllegalStateException("Failed to write $bytesToWrite bytes at address $address")
+		return bytesToWrite.toLong() == uio.process_vm_writev(id, local, 1, remote, 1, 0)
 	}
 
 }

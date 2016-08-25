@@ -31,7 +31,7 @@ interface Source {
 	 * @param data A pointer to the data to read into.
 	 * @param bytesToRead The amount of bytes to read.
 	 */
-	fun read(address: Pointer, data: Pointer, bytesToRead: Int)
+	fun read(address: Pointer, data: Pointer, bytesToRead: Int): Boolean
 
 	/**
 	 * Reads at the specified native address into the specified data.
@@ -251,7 +251,7 @@ interface Source {
 	 * @param address The native address to write to.
 	 * @param data A pointer to the data to write to.
 	 */
-	fun write(address: Pointer, data: Pointer, bytesToWrite: Int)
+	fun write(address: Pointer, data: Pointer, bytesToWrite: Int): Boolean
 
 	/**
 	 * Writes the specified memory to the specified native address.
