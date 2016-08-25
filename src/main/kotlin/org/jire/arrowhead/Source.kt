@@ -197,7 +197,6 @@ interface Source {
 	 */
 	fun long(address: Int, offset: Long = 0) = long(address.toLong(), offset)
 
-
 	/**
 	 * Reads a float at the specified native address, offset by the specified offset.
 	 *
