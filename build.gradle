@@ -28,7 +28,7 @@ buildscript {
     ext.project_license_tag = 'Apache-2.0'
     ext.project_license_url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
 
-    ext.kotlin_version = '1.0.3'
+    ext.kotlin_version = '1.0.4'
     ext.jna_version = '4.3.0-SNAPSHOT' // living on the bleeding edge!
 
     repositories {
@@ -144,5 +144,5 @@ dependencies {
     compile group: 'net.java.dev.jna', name: 'jna', version: jna_version
     compile group: 'net.java.dev.jna', name: 'jna-platform', version: jna_version
 
-    compile group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.12'
+    compile group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.13'
 }
