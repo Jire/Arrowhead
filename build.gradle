@@ -16,20 +16,20 @@
 
 buildscript {
     ext.your_name = 'Thomas Nappo'
-    ext.your_email = 'technology@live.com'
+    ext.your_email = 'thomasgnappo@gmail.com'
     ext.your_github_name = 'jire'
 
     ext.project_name = 'Arrowhead'
     ext.project_description = 'Straightforward native interfacing from Kotlin'
     ext.project_group = 'org.jire.arrowhead'
     ext.project_artifact = 'arrowhead'
-    ext.project_version = '1.2.2'
+    ext.project_version = '1.2.3'
     ext.project_license = 'The Apache Software License, Version 2.0'
     ext.project_license_tag = 'Apache-2.0'
     ext.project_license_url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
 
-    ext.kotlin_version = '1.0.4'
-    ext.jna_version = '4.3.0-SNAPSHOT' // living on the bleeding edge!
+    ext.kotlin_version = '1.0.6'
+    ext.jna_version = '4.3.0'
 
     repositories {
         mavenCentral()
@@ -133,8 +133,6 @@ bintray {
 
 repositories {
     mavenCentral()
-
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
