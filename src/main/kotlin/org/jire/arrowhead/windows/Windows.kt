@@ -61,7 +61,7 @@ object Windows {
 		try {
 			while (JNAKernel32.Process32Next(snapshot, entry)) {
 				val fileName = Native.toString(entry.szExeFile)
-				if (processName.equals(fileName)) return openProcess(entry.th32ProcessID.toInt())
+				if (processName == fileName) return openProcess(entry.th32ProcessID.toInt())
 			}
 		} finally {
 			JNAKernel32.CloseHandle(snapshot)

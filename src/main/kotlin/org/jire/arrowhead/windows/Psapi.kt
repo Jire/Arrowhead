@@ -50,7 +50,7 @@ interface Psapi : StdCallLibrary {
 		 *
 		 * Use this to actually call the native functions.
 		 */
-		val INSTANCE = Native.loadLibrary("Psapi", Psapi::class.java)!!
+		val INSTANCE: Psapi = Native.loadLibrary("Psapi", Psapi::class.java)
 
 	}
 
