@@ -38,7 +38,7 @@ object StructCache {
 	operator inline fun <reified T : Struct> get(type: Class<*>, vararg args: Any): T {
 		var struct = map[type]
 		if (struct == null) {
-			struct = (if (args.size > 0) {
+			struct = (if (args.isNotEmpty()) {
 				val types = arrayOfNulls<Class<*>>(args.size)
 				type.declaredFields.forEachIndexed { i, field -> types[i] = field.type }
 				val constructor = type.getDeclaredConstructor(*types)
