@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:JvmName("UnsignExtensions")
+
 package org.jire.arrowhead
 
 /**

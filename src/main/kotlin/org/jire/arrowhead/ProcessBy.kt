@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:JvmName("ProcessBy")
+
 package org.jire.arrowhead
 
 import com.sun.jna.Platform
@@ -27,6 +29,7 @@ import java.util.*
  *
  * @param processID The ID of the process to open.
  */
+@JvmOverloads
 fun processByID(processID: Int, accessFlags: Int = WinNT.PROCESS_ALL_ACCESS): Process? = when {
 	Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processID, accessFlags)
 	Platform.isLinux() -> LinuxProcess(processID)
@@ -38,6 +41,7 @@ fun processByID(processID: Int, accessFlags: Int = WinNT.PROCESS_ALL_ACCESS): Pr
  *
  * @param processName The name of the process to open.
  */
+@JvmOverloads
 fun processByName(processName: String, accessFlags: Int = WinNT.PROCESS_ALL_ACCESS): Process? = when {
 	Platform.isWindows() || Platform.isWindowsCE() -> Windows.openProcess(processName, accessFlags)
 	Platform.isLinux() -> {

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:JvmName("Keys")
+
 package org.jire.arrowhead
 
 import com.sun.jna.Platform
