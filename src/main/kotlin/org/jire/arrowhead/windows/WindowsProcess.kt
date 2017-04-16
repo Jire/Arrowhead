@@ -46,7 +46,7 @@ class WindowsProcess(override val id: Int, val handle: WinNT.HANDLE) : Process {
 	override fun loadModules() {
 		modulesMap.clear()
 
-		val modules = arrayOfNulls<WinDef.HMODULE>(4096) // support for Windows Creator's Update
+		val modules = arrayOfNulls<WinDef.HMODULE>(4096)
 		val needed = IntByReference()
 		if (Psapi.EnumProcessModulesEx(handle, modules, modules.size, needed)) {
 			for (i in 0..needed.value / Native.getNativeSize(WinDef.HMODULE::class.java)) {
