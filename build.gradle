@@ -34,7 +34,6 @@ buildscript {
 	repositories {
 		mavenCentral()
 		jcenter()
-		maven { url kotlin_eap_repo }
 	}
 
 	dependencies {
@@ -134,7 +133,7 @@ bintray {
 
 repositories {
 	mavenCentral()
-	maven { url kotlin_eap_repo }
+	jcenter()
 }
 
 dependencies {
