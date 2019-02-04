@@ -35,7 +35,7 @@ object StructCache {
 	 * @param type The desired type of the struct.
 	 * @param args The arguments to pass to the constructor of the struct.
 	 */
-	operator inline fun <reified T : Struct> get(type: Class<*>, vararg args: Any): T {
+	inline operator fun <reified T : Struct> get(type: Class<*>, vararg args: Any): T {
 		var struct = map[type]
 		if (struct == null) {
 			struct = (if (args.isNotEmpty()) {
@@ -43,7 +43,7 @@ object StructCache {
 				type.declaredFields.forEachIndexed { i, field -> types[i] = field.type }
 				val constructor = type.getDeclaredConstructor(*types)
 				constructor.newInstance(*args)
-			} else type.newInstance()) as T
+			} else type.getDeclaredConstructor().newInstance()) as T
 			map[type] = struct
 		}
 		return struct as T
@@ -55,7 +55,7 @@ object StructCache {
 	 * @param type The desired type of the struct.
 	 * @param args The arguments to pass to the constructor of the struct.
 	 */
-	operator inline fun <reified T : Struct> get(type: KClass<T>, vararg args: Any): T = get(type.java, *args)
+	inline operator fun <reified T : Struct> get(type: KClass<T>, vararg args: Any): T = get(type.java, *args)
 
 }
 
