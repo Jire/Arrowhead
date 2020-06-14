@@ -39,11 +39,12 @@ object StructCache {
 		var struct = map[type]
 		if (struct == null) {
 			struct = (if (args.isNotEmpty()) {
-				val types = arrayOfNulls<Class<*>>(args.size)
-				type.declaredFields.forEachIndexed { i, field -> types[i] = field.type }
+				val types = type.declaredFields.map { it.type }.toTypedArray()
 				val constructor = type.getDeclaredConstructor(*types)
 				constructor.newInstance(*args)
-			} else type.getDeclaredConstructor().newInstance()) as T
+			} else {
+				type.getDeclaredConstructor().newInstance()
+			}) as T
 			map[type] = struct
 		}
 		return struct as T
@@ -65,4 +66,4 @@ object StructCache {
  * @param args The arguments to pass to the constructor of the struct.
  */
 inline operator fun <reified T : Struct> KClass<T>.get(vararg args: Any)
-		= StructCache[this, args] // Explosions can't be passed to get operator... a bug perhaps?
+		= StructCache.get(this, *args) // Explosions can't be passed to get operator... a bug perhaps?
